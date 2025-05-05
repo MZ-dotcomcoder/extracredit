@@ -311,17 +311,14 @@ function getCookie(name) {
 function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
 }
-  const form = document.getElementById('userForm');
-  const progressBar = document.getElementById('progressBar');
+  const requiredFields = document.querySelectorAll(".required-field");
+  const progressBar = document.getElementById("progressBar");
 
   function updateProgressBar() {
-    const requiredFields = form.querySelectorAll('[required]');
     let filled = 0;
 
     requiredFields.forEach(field => {
-      if (field.type === "checkbox" || field.type === "radio") {
-        if (field.checked) filled++;
-      } else if (field.value.trim() !== "") {
+      if (field.value.trim() !== "") {
         filled++;
       }
     });
@@ -329,17 +326,20 @@ function deleteCookie(name) {
     const percent = Math.round((filled / requiredFields.length) * 100);
     progressBar.style.width = percent + "%";
     progressBar.textContent = percent + "%";
+      
+    if (percent < 34) {
+      progressBar.style.backgroundColor = "red";
+    } else if (percent < 67) {
+      progressBar.style.backgroundColor = "orange";
+    } else {
+      progressBar.style.backgroundColor = "green";
+    }
   }
 
-  form.addEventListener('input', updateProgressBar);
-  form.addEventListener('change', updateProgressBar);
-
-  document.getElementById('clearButton').addEventListener('click', function() {
-    setTimeout(() => {
-      updateProgressBar();
-    }, 100); 
+  requiredFields.forEach(field => {
+    field.addEventListener("input", updateProgressBar);
+    field.addEventListener("change", updateProgressBar);
   });
 
-  updateProgressBar();
-
+  updateProgressBar(); 
 
