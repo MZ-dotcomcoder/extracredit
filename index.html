@@ -257,6 +257,16 @@
         Remember Me
       </label><br><br>
    <td colspan="2">
+ <script src="https://www.google.com/recaptcha/api.js"></script>
+ <script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+ </script>
+       <button class="g-recaptcha" 
+        data-sitekey="reCAPTCHA_site_key" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
  <button type="button" id="validateButton">Validate</button>
 <button type="submit" id="submitButton" style="display: none;">Submit</button>
 <button type="button" id="clearButton">Clear</button>
