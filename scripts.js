@@ -333,3 +333,34 @@ document.getElementById("userForm").addEventListener("submit", function (e) {
     });
   });
 });
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    document.getElementById("latitude").value = lat;
+    document.getElementById("longitude").value = lon;
+}
+
+getLocation();
+
+function changeLanguage() {
+    const lang = document.getElementById("language").value;
+    if (lang === "es") {
+        document.getElementById("label-name").textContent = "Nombre completo:";
+        document.getElementById("label-email").textContent = "Correo electrónico:";
+    } else if (lang === "fr") {
+        document.getElementById("label-name").textContent = "Nom complet:";
+        document.getElementById("label-email").textContent = "E-mail:";
+    } else {
+        document.getElementById("label-name").textContent = "Full Name:";
+        document.getElementById("label-email").textContent = "Email:";
+    }
+}
+
