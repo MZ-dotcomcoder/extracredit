@@ -48,11 +48,11 @@
         <!-- Name -->
             <form id="userForm" onsubmit="saveName(event)">
             <label for="firstName">First Name:</label><input type="text" id="firstName" name="firstName" 
-            oninput="validateFirstName()" onblur="validateFirstName()" /><span id="firstNameError" class="error-message, requied-field"></span>
+            oninput="validateFirstName()" onblur="validateFirstName()" /><span id="firstNameError" class="required-field" class="error-message"></span>
             <label for="middleInitial">Middle Initial (optional):</label><input type="text" id="middleInitial" name="middleInitial" 
-            maxlength="1" oninput="validateMiddleInitial()" onblur="validateMiddleInitial()" /><span id="middleInitialError" class="error-message"></span>
+            maxlength="1" oninput="validateMiddleInitial()" onblur="validateMiddleInitial()" /><span id="middleInitialError" class="required-field" class="error-message"></span>
             <label for="lastName">Last Name:</label><input type="text" id="lastName" name="lastName"
-            oninput="validateLastName()" onblur="validateLastName()" /><span id="lastNameError" class="error-message"></span>
+            oninput="validateLastName()" onblur="validateLastName()" /><span id="lastNameError" class="required-field" class="error-message"></span>
         </tr>
         <tr>
         <!-- Date Of Birth -->
