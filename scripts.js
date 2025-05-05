@@ -311,3 +311,35 @@ function getCookie(name) {
 function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
 }
+  const form = document.getElementById('userForm');
+  const progressBar = document.getElementById('progressBar');
+
+  function updateProgressBar() {
+    const requiredFields = form.querySelectorAll('[required]');
+    let filled = 0;
+
+    requiredFields.forEach(field => {
+      if (field.type === "checkbox" || field.type === "radio") {
+        if (field.checked) filled++;
+      } else if (field.value.trim() !== "") {
+        filled++;
+      }
+    });
+
+    const percent = Math.round((filled / requiredFields.length) * 100);
+    progressBar.style.width = percent + "%";
+    progressBar.textContent = percent + "%";
+  }
+
+  form.addEventListener('input', updateProgressBar);
+  form.addEventListener('change', updateProgressBar);
+
+  document.getElementById('clearButton').addEventListener('click', function() {
+    setTimeout(() => {
+      updateProgressBar();
+    }, 100); 
+  });
+
+  updateProgressBar();
+
+
