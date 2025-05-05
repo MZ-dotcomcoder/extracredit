@@ -315,7 +315,7 @@ document.getElementById("userForm").addEventListener("submit", function (e) {
   e.preventDefault(); 
 
   grecaptcha.ready(function () {
-    grecaptcha.execute('6Ld7SS4rAAAAAPHBvMV2yUz-AJVyAzMB7zZCVySq', { action: 'submit' }).then(function (token) {
+    grecaptcha.execute("6Ld7SS4rAAAAAPHBvMV2yUz-AJVyAzMB7zZCVySq", { action: 'submit' }).then(function (token) {
       let form = document.getElementById("userForm");
       let input = document.createElement("input");
       input.setAttribute("type", "hidden");
