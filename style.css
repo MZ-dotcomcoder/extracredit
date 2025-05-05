@@ -151,3 +151,24 @@ button:hover {
     font-size: 14px;
     padding-left: 20px;
 }
+#progressContainer {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  height: 20px;
+  overflow: hidden;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0%;
+  background-color: #4caf50; /* Change this color if you want */
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  line-height: 20px;
+  font-size: 0.9em;
+  transition: width 0.3s ease-in-out;
+}
+
