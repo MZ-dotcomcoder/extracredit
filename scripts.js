@@ -311,3 +311,19 @@ function getCookie(name) {
 function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
 }
+document.getElementById("userForm").addEventListener("submit", function (e) {
+  e.preventDefault(); 
+
+  grecaptcha.ready(function () {
+    grecaptcha.execute('6Ld7SS4rAAAAAPHBvMV2yUz-AJVyAzMB7zZCVySq', { action: 'submit' }).then(function (token) {
+      let form = document.getElementById("userForm");
+      let input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("name", "g-recaptcha-response");
+      input.setAttribute("value", token);
+      form.appendChild(input);
+
+      form.submit(); 
+    });
+  });
+});
