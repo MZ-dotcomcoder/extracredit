@@ -145,3 +145,9 @@ button[type="submit"] {
 button:hover {
     background-color: #2f2f2f;
 } 
+.error-message {
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 20px;
+}
