@@ -311,35 +311,37 @@ function getCookie(name) {
 function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
 }
-  const requiredFields = document.querySelectorAll(".required-field");
-  const progressBar = document.getElementById("progressBar");
+ window.onload = function () {
+    const requiredFields = document.querySelectorAll(".required-field");
+    const progressBar = document.getElementById("progressBar");
 
-  function updateProgressBar() {
-    let filled = 0;
+    function updateProgressBar() {
+      let filled = 0;
+
+      requiredFields.forEach(field => {
+        if (field.value.trim() !== "") {
+          filled++;
+        }
+      });
+
+      const percent = Math.round((filled / requiredFields.length) * 100);
+      progressBar.style.width = percent + "%";
+      progressBar.textContent = percent + "%";
+
+      if (percent < 34) {
+        progressBar.style.backgroundColor = "red";
+      } else if (percent < 67) {
+        progressBar.style.backgroundColor = "orange";
+      } else {
+        progressBar.style.backgroundColor = "green";
+      }
+    }
 
     requiredFields.forEach(field => {
-      if (field.value.trim() !== "") {
-        filled++;
-      }
+      field.addEventListener("input", updateProgressBar);
+      field.addEventListener("change", updateProgressBar);
     });
 
-    const percent = Math.round((filled / requiredFields.length) * 100);
-    progressBar.style.width = percent + "%";
-    progressBar.textContent = percent + "%";
-      
-    if (percent < 34) {
-      progressBar.style.backgroundColor = "red";
-    } else if (percent < 67) {
-      progressBar.style.backgroundColor = "orange";
-    } else {
-      progressBar.style.backgroundColor = "green";
-    }
-  }
-
-  requiredFields.forEach(field => {
-    field.addEventListener("input", updateProgressBar);
-    field.addEventListener("change", updateProgressBar);
-  });
-
-  updateProgressBar(); 
+    updateProgressBar(); 
+  };
 
